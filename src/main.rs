@@ -3,6 +3,8 @@ mod relays;
 
 use actix_web::{web, App, HttpServer, HttpResponse};
 
+
+/// MAIN DOCS =====> https://www.waveshare.com/wiki/RPi_Relay_Board <=====
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
   dotenv::dotenv().ok();
