@@ -3,12 +3,19 @@ use actix_web::{
   Responder
 };
 
+
+/*
+Channel	| RPi Pin No | wiringPi | BCM | Descriptions
+CH1	    |   37	     |    P25	  |  26 | Channel 1
+CH2	    |   38	     |    P28	  |  20 | Channel 2
+CH3	    |   40	     |    P29	  |  21 | Channel 3
+*/
+
 use super::super::relays;
 
 pub async fn get_relays() -> impl Responder {
-  let r = relays::new_relay(String::from("Relay 1"), 26);
-  r.play();
-  HttpResponse::Ok().body("<h1>get all relays status</h1>")
+  let status = relays::get_relay_status();
+  HttpResponse::Ok().body(status)
 }
 
 pub async fn get_relay_by_id() -> impl Responder {
@@ -16,7 +23,6 @@ pub async fn get_relay_by_id() -> impl Responder {
 }
 
 pub async fn turn_on_relay_by_id() -> impl Responder {
-  // let rel = relays.new(26);
   HttpResponse::Ok().body("<h1>relay {id} on</h1>")
 }
 

@@ -11,7 +11,11 @@ async fn main() -> std::io::Result<()> {
 
   let port = std::env::var("PORT").unwrap_or("8080".to_string());
   let address = format!("127.0.0.1:{}", port);
+
+  println!("Initializing Relays");
+  relays::init_relays();
   
+
   println!("starting server on http://{}", address);
   HttpServer::new(|| {
     App::new()
